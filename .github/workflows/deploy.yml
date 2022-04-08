@@ -1,0 +1,53 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package-lock.json
+      - pages/**.[jt]sx?
+      - components/**.[jt]sx?
+      - libs/**.[jt]sx?
+      - deploy.sh
+      - stitches.config.ts
+      - .github/workflows/deploy.yml
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Build
+        env:
+          GOOGLE_CLIENT_KEY: ${{ secrets.GOOGLE_CLIENT_KEY }}
+        run: |
+          yarn build
+
+      - name: Export
+        env:
+          GOOGLE_CLIENT_KEY: ${{ secrets.GOOGLE_CLIENT_KEY }}
+        run: |
+          yarn export
+
+      - name: Deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'ap-southeast-2a'
+          GOOGLE_CLIENT_KEY: ${{ secrets.GOOGLE_CLIENT_KEY }}
+        run: |
+          ./deploy.sh
