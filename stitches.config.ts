@@ -8,6 +8,7 @@ export const { styled, css, globalCss, getCssText } = createStitches({
   theme: {
     fonts: {
       system: 'Untitled Sans, -apple-system, system-ui, sans-serif',
+      muller: 'Muller',
     },
     colors: {
       hiContrast: 'hsl(206,10%,5%)',

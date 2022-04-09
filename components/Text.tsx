@@ -1,7 +1,7 @@
 import { styled } from '../stitches.config'
 
 export const Text = styled('p', {
-  fontFamily: '$system',
+  fontFamily: '$muller',
   fontSize: '$2',
   color: '$hiContrast',
   variants: {
