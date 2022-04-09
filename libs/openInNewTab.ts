@@ -1,6 +1,7 @@
-export function openInNewTab(e: React.MouseEvent<HTMLAnchorElement>) {
+export function openInNewTab(e: React.MouseEvent<HTMLElement>) {
   e.stopPropagation()
   e.preventDefault()
-  const url = (e.target as HTMLAnchorElement).getAttribute('href') as string
+  const anchor = (e.target as HTMLElement).closest('a') as HTMLAnchorElement
+  const url = anchor.getAttribute('href') as string
   window.open(url, '_blank')?.focus()
 }
