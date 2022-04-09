@@ -5,6 +5,7 @@ import { mauve, blackA } from '@radix-ui/colors'
 import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons'
 import {Text} from './Text'
 import {Button} from './Button'
+import {InstaLink} from './InstaLink'
 
 const SCROLLBAR_SIZE = 8;
 
@@ -105,12 +106,13 @@ export function ResponsiveQuickNav(props: any) {
       <VisibleAt bp1 style={{position: 'sticky', top: 0, background: 'white'}}>
         {!visible && (
           <div style={{display: 'flex', justifyContent: 'flex-end', background: 'white'}}>
-            <div style={{display: 'inline-block', padding: '10px'}}>
+            <InstaLink />
+            <div style={{padding: '10px'}}>
               <Button
                 kind="minimal"
                 onClick={() => setVisible(true)}
               >
-                <HamburgerMenuIcon width="20" height="20" />
+                <HamburgerMenuIcon style={{display: 'block'}} width="20" height="20" />
               </Button>
             </div>
           </div>
@@ -152,20 +154,22 @@ export function QuickNav(props: any) {
   const {categories, showClose, onClose} = props
   return (
     <aside>
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <Text as="h2" size="xl" color="primary">How can we help?</Text>
-        {showClose && (
-          <div style={{display: 'inline-block', padding: '10px'}}>
+      {showClose && (
+        <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+          <div style={{padding: '10px'}}>
             <Button
               kind="minimal"
               onClick={() => onClose()}
             >
-              <Cross1Icon width="20" height="20" />
+              <Cross1Icon style={{display: 'block'}} width="20" height="20" />
             </Button>
           </div>
-        )}
+        </div>
+      )}
+      <Text as="h2" size="xl" color="primary">How can we help?</Text>
+      <div style={{paddingRight: 20}}>
+        {categories.map((c: any, i: number) => <Category key={i} category={c} onClose={onClose} />)}
       </div>
-      {categories.map((c: any, i: number) => <Category key={i} category={c} onClose={onClose} />)}
     </aside>
   )
 }

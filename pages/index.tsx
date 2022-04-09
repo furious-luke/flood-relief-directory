@@ -7,6 +7,7 @@ import { ResponsiveQuickNav } from '../components/QuickNav'
 import { Text } from '../components/Text'
 import { AppShell } from '../components/AppShell'
 import { VisibleAt } from '../components/QuickNav'
+import { InstaLink } from '../components/InstaLink'
 import { getProvidersList } from '../libs/getProvidersList'
 
 const PaddedBox = styled('div', {
@@ -36,7 +37,9 @@ export default function Home(props: HomeProps) {
             <img src="/banner.png" width="100%" />
           </div>
         </VisibleAt>
-        <div />
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end', margin: '10px 20px 0 0'}}>
+          <InstaLink scale={1.5} />
+        </div>
         <div />
         <PaddedBox>
           <VisibleAt bp1>
