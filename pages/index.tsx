@@ -49,7 +49,7 @@ export default function Home(props: HomeProps) {
           </VisibleAt>
           <Text style={{lineHeight: '22px'}}>
             A collection of resources for the community affected by the 2022 natural disasters in the Northern Rivers
-            of NSW. Click on the sections to the right, search for a keyword like "money" or scroll all the way
+            of NSW. Click on the sections to the right, search for a keyword like &ldquo;money&rdquo; or scroll all the way
             through.
           </Text>
           <Text style={{lineHeight: '22px'}}>
