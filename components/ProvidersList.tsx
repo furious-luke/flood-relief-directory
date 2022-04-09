@@ -46,9 +46,11 @@ interface ProvidersListProps {
 export function ProvidersList(props: ProvidersListProps) {
   const { categories = [] } = props
   return (
-    <SectionStack>
-      {categories.map((c, i) => <Category key={i} category={c} />)}
-    </SectionStack>
+    <div style={{marginTop: '40px'}}>
+      <SectionStack>
+        {categories.map((c, i) => <Category key={i} category={c} />)}
+      </SectionStack>
+    </div>
   )
 }
 
