@@ -14,7 +14,7 @@ const AvatarRoot = styled(Avatar.Root, {
 })
 
 const Heading = styled(Text, {
-  margin: '0 0 20px 0',
+  margin: '0 0 10px 0',
   fontSize: '$3',
   fontWeight: '600',
 })
@@ -22,6 +22,7 @@ const Heading = styled(Text, {
 const Description = styled(Text, {
   marginTop: '$1',
   marginBottom: '$1',
+  lineHeight: '24px',
 })
 
 interface ListItemProps {
