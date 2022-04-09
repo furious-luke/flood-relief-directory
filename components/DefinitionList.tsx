@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { styled } from '../stitches.config'
+import { textVariants } from './Text'
 
 interface DefinitionListFunc extends React.FC<{}> {
   Term: React.FC<{}>,
   Definition: React.FC<{}>
 }
 
-const Term = styled('dt', {
+const Term = styled('dt', textVariants, {
   fontFamily: '$system',
   fontWeight: '600',
   fontSize: '$1',

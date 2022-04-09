@@ -153,7 +153,7 @@ export function QuickNav(props: any) {
   return (
     <aside>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <Text as="h2" size="xl">Quick nav</Text>
+        <Text as="h2" size="xl" color="primary">Quick nav</Text>
         {showClose && (
           <div style={{display: 'inline-block', padding: '10px'}}>
             <Button

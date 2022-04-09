@@ -17,6 +17,9 @@ export const { styled, css, globalCss, getCssText } = createStitches({
       lightBlue: '#8fd3f1',
       lightBlueA: '#8fd3f130',
       dullWhite: '#f0f0f0',
+      blueberry: '#303C87',
+      lightOrange: '#EEA243',
+      lightPeach: '#FBC2A0',
     },
     space: {
       1: '5px',

@@ -1,9 +1,6 @@
-import { styled } from '../stitches.config'
+import { styled, css } from '../stitches.config'
 
-export const Text = styled('p', {
-  fontFamily: '$muller',
-  fontSize: '$2',
-  color: '$hiContrast',
+export const textVariants = css({
   variants: {
     size: {
       sm: {
@@ -22,5 +19,22 @@ export const Text = styled('p', {
         fontSize: '$5',
       },
     },
+    color: {
+      primary: {
+        color: '$blueberry',
+      },
+      secondary: {
+        color: '$lightOrange',
+      },
+      accent: {
+        color: '$lightPeach',
+      },
+    },
   },
+})
+
+export const Text = styled('p', textVariants, {
+  fontFamily: '$muller',
+  fontSize: '$2',
+  color: '$hiContrast',
 })

@@ -47,7 +47,7 @@ export function ListItem(props: ListItemProps): JSX.Element {
         </AvatarRoot>
       )}
       <div>
-        <Heading>{title}</Heading>
+        <Heading color="primary">{title}</Heading>
         <Description>{description}</Description>
         {children}
       </div>

@@ -58,7 +58,7 @@ function Category(props: CategoryProps) {
   const { category } = props
   return (
     <SectionStack.Section>
-      <Text as="h3" id={category.id} size="xl">{category.name}</Text>
+      <Text as="h3" color="primary" id={category.id} size="xl">{category.name}</Text>
       <div style={{marginBottom: '40px'}}>
         {category.subcategories.map((s, i) => <Subcategory key={i} subcategory={s} />)}
       </div>
@@ -83,7 +83,7 @@ function Subcategory(props: SubcategoryProps) {
   const { subcategory } = props
   return (
     <>
-      <Text as="h4" id={subcategory.id} size="bg">{subcategory.name}</Text>
+      <Text as="h4" color="secondary" id={subcategory.id} size="bg">{subcategory.name}</Text>
       <List>
         {subcategory.providers.map((p, i) => <ProvidersListItem key={i} provider={p} />)}
       </List>
@@ -105,19 +105,19 @@ function ProvidersListItem(props: ProvidersListItemProps) {
       <div style={{marginTop: 18, marginBottom: 18}}>
         <DefinitionList>
           {provider.link && ([
-            <DefinitionList.Term key={0}>Website: </DefinitionList.Term>,
+            <DefinitionList.Term key={0} color="accent">Website: </DefinitionList.Term>,
             <DefinitionList.Definition key={1}><a href={provider.link}>{provider.link}</a></DefinitionList.Definition>,
           ])}
           {provider.email && ([
-            <DefinitionList.Term key={2}>Email: </DefinitionList.Term>,
+            <DefinitionList.Term key={2} color="accent">Email: </DefinitionList.Term>,
             <DefinitionList.Definition key={3}><a href={`mailto:{provider.email}`}>{provider.email}</a></DefinitionList.Definition>,
           ])}
           {provider.phone && ([
-            <DefinitionList.Term key={4}>Phone: </DefinitionList.Term>,
+            <DefinitionList.Term key={4} color="accent">Phone: </DefinitionList.Term>,
             <DefinitionList.Definition key={5}>{provider.phone}</DefinitionList.Definition>,
           ])}
           {provider.instagram && ([
-            <DefinitionList.Term key={4}>Instagram: </DefinitionList.Term>,
+            <DefinitionList.Term key={4} color="accent">Instagram: </DefinitionList.Term>,
             <DefinitionList.Definition key={5}><a href={provider.instagram}>{provider.instagram}</a></DefinitionList.Definition>,
           ])}
         </DefinitionList>
