@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as SeparatorPrimitive from '@radix-ui/react-separator'
 import { mauve } from '@radix-ui/colors'
 import { styled } from '../stitches.config'
+import { openInNewTab } from '../libs/openInNewTab'
 import { SectionStack } from './SectionStack'
 import { Text } from './Text'
 import { ListItem } from './ListItem'
@@ -106,11 +107,15 @@ function ProvidersListItem(props: ProvidersListItemProps) {
         <DefinitionList>
           {provider.link && ([
             <DefinitionList.Term key={0} color="accent">Website: </DefinitionList.Term>,
-            <DefinitionList.Definition key={1}><a href={provider.link}>{provider.link}</a></DefinitionList.Definition>,
+            <DefinitionList.Definition key={1}>
+              <a href={provider.link} onClick={openInNewTab}>{provider.link}</a>
+            </DefinitionList.Definition>,
           ])}
           {provider.email && ([
             <DefinitionList.Term key={2} color="accent">Email: </DefinitionList.Term>,
-            <DefinitionList.Definition key={3}><a href={`mailto:{provider.email}`}>{provider.email}</a></DefinitionList.Definition>,
+            <DefinitionList.Definition key={3}>
+              <a href={`mailto:{provider.email}`}>{provider.email}</a>
+            </DefinitionList.Definition>,
           ])}
           {provider.phone && ([
             <DefinitionList.Term key={4} color="accent">Phone: </DefinitionList.Term>,
@@ -118,7 +123,9 @@ function ProvidersListItem(props: ProvidersListItemProps) {
           ])}
           {provider.instagram && ([
             <DefinitionList.Term key={4} color="accent">Instagram: </DefinitionList.Term>,
-            <DefinitionList.Definition key={5}><a href={provider.instagram}>{provider.instagram}</a></DefinitionList.Definition>,
+            <DefinitionList.Definition key={5}>
+              <a href={provider.instagram} onClick={openInNewTab}>{provider.instagram}</a>
+            </DefinitionList.Definition>,
           ])}
         </DefinitionList>
       </div>
