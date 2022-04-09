@@ -2,11 +2,6 @@ import * as React from 'react'
 import { styled } from '../stitches.config'
 import { textVariants } from './Text'
 
-interface DefinitionListFunc extends React.FC<{}> {
-  Term: React.FC<{}>,
-  Definition: React.FC<{}>
-}
-
 const Term = styled('dt', textVariants, {
   fontFamily: '$system',
   fontWeight: '600',
@@ -21,6 +16,11 @@ const Definition = styled('dd', {
   color: '$hiContrast',
   marginLeft: 0,
 })
+
+interface DefinitionListFunc extends React.FC<{}> {
+  Term: typeof Term,
+  Definition: typeof Definition,
+}
 
 export const DefinitionList: DefinitionListFunc = Object.assign(
   styled('dl', {
