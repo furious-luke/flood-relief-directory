@@ -4,19 +4,10 @@ import { styled } from '../stitches.config'
 import type { Category } from '../components/ProvidersList'
 import { ProvidersList } from '../components/ProvidersList'
 import { ResponsiveQuickNav } from '../components/QuickNav'
-import { Message } from '../components/Message'
+import { Text } from '../components/Text'
 import { AppShell } from '../components/AppShell'
 import { VisibleAt } from '../components/QuickNav'
 import { getProvidersList } from '../libs/getProvidersList'
-
-const Columns = styled('div', {
-  display: 'flex',
-  flexDirection: 'column-reverse',
-  '@bp2': {
-    display: 'grid',
-    gridTemplateColumns: '1fr 600px 1fr',
-  }
-})
 
 const PaddedBox = styled('div', {
   overflow: 'clip',
@@ -53,10 +44,15 @@ export default function Home(props: HomeProps) {
               <img src="/banner.png" width="100%" />
             </div>
           </VisibleAt>
-          <Message>
-            Please email us at <a href="mailto:floodreliefdirectory@gmail.com">floodreliefdirectory@gmail.com</a> with
-            any suggestions for additional services.
-          </Message>
+          <Text style={{lineHeight: '22px'}}>
+            A collection of resources for the community affected by the 2022 natural disasters in the Northern Rivers
+            of NSW. Click on the sections to the right, search for a keyword like "money" or scroll all the way
+            through.
+          </Text>
+          <Text style={{lineHeight: '22px'}}>
+            Please email <a href="mailto:floodreliefdirectory@gmail.com">floodreliefdirectory@gmail.com</a> if you have
+            submissions or updates.
+          </Text>
           <ProvidersList categories={categories} />
         </PaddedBox>
         <ResponsiveQuickNav categories={categories} />

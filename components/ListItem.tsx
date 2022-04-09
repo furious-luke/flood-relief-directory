@@ -22,7 +22,7 @@ const Heading = styled(Text, {
 const Description = styled(Text, {
   marginTop: '$1',
   marginBottom: '$1',
-  lineHeight: '24px',
+  lineHeight: '22px',
 })
 
 interface ListItemProps {
