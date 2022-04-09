@@ -14,7 +14,7 @@ const AvatarRoot = styled(Avatar.Root, {
 })
 
 const Heading = styled(Text, {
-  margin: 0,
+  margin: '0 0 20px 0',
   fontSize: '$3',
   fontWeight: '600',
 })
