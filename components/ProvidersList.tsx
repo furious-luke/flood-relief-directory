@@ -9,14 +9,15 @@ import { ListItem } from './ListItem'
 import { DefinitionList } from './DefinitionList'
 
 export interface Provider {
-  category: string
-  subcategory?: string
-  title: string
-  description?: string
-  phone?: string
-  link?: string
+  category: string,
+  subcategory?: string,
+  title: string,
+  description?: string,
+  phone?: string,
+  link?: string,
   email?: string,
   instagram?: string,
+  instagramDisplay?: string,
 }
 
 export interface Subcategory {
@@ -124,7 +125,7 @@ function ProvidersListItem(props: ProvidersListItemProps) {
           {provider.instagram && ([
             <DefinitionList.Term key={4} color="accent">Instagram: </DefinitionList.Term>,
             <DefinitionList.Definition key={5}>
-              <a href={provider.instagram} onClick={openInNewTab}>{provider.instagram}</a>
+              <a href={provider.instagram} onClick={openInNewTab}>{provider.instagramDisplay}</a>
             </DefinitionList.Definition>,
           ])}
         </DefinitionList>

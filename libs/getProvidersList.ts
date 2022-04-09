@@ -60,10 +60,29 @@ function mapRow(row: any): Provider {
     category: row.Category || '',
     subcategory: row.Provider || '',
     title: row.Title || '',
-    description: row.Description || null,
-    phone: row.Phone || null,
-    link: row.Link || null,
-    email: row.Email || null,
-    instagram: row.Instagram || null,
+    description: row.Description || '',
+    phone: row.Phone || '',
+    link: row.Website || '',
+    email: row.Email || '',
+    instagram: row.Instagram || '',
+    instagramDisplay: getInstagramDisplay(row.Instagram) || '',
   }
+}
+
+function getInstagramDisplay(url?: string) {
+  try {
+    if (url) {
+      let pathname = (new URL(url)).pathname
+      if (pathname[0] == '/') {
+        pathname = pathname.slice(1)
+      }
+      if (pathname[pathname.length - 1] == '/') {
+        pathname = pathname.slice(0, pathname.length - 1)
+      }
+      return '@' + pathname
+    }
+  }
+  catch (e) {
+  }
+  return undefined
 }
