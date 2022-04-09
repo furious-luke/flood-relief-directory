@@ -14,7 +14,7 @@ const globalStyles = globalCss({
     backgroundColor: '$white',
   },
   a: {
-    color: 'inherit',
+    color: '$blueberry',
   },
   '*': {
     boxSizing: 'border-box',

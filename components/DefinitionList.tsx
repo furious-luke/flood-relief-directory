@@ -3,18 +3,18 @@ import { styled } from '../stitches.config'
 import { textVariants } from './Text'
 
 const Term = styled('dt', textVariants, {
-  fontFamily: '$system',
+  fontFamily: '$muller',
   fontWeight: '600',
   fontSize: '$1',
-  color: '$hiContrast',
+  color: '$blueberry',
   textTransform: 'uppercase',
 })
 
-const Definition = styled('dd', {
-  fontFamily: '$system',
+const Definition = styled('dd', textVariants, {
+  fontFamily: '$muller',
   fontSize: '$1',
-  color: '$hiContrast',
   marginLeft: 0,
+  color: '$blueberry',
 })
 
 interface DefinitionListFunc extends React.FC<{}> {

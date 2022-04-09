@@ -27,7 +27,7 @@ export const textVariants = css({
         color: '$lightOrange',
       },
       accent: {
-        color: '$lightPeach',
+        color: '$lightOrange',
       },
     },
   },
@@ -36,5 +36,5 @@ export const textVariants = css({
 export const Text = styled('p', textVariants, {
   fontFamily: '$muller',
   fontSize: '$2',
-  color: '$hiContrast',
+  color: '$blueberry',
 })
