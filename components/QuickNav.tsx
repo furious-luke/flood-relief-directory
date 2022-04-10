@@ -166,7 +166,7 @@ export function QuickNav(props: any) {
           </div>
         </div>
       )}
-      <Text as="h2" size="xl" color="primary">How can we help?</Text>
+      <Text as="h2" size="xl" color="secondary">How can we help?</Text>
       <div style={{paddingRight: 20}}>
         {categories.map((c: any, i: number) => <Category key={i} category={c} onClose={onClose} />)}
       </div>
