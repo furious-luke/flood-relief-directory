@@ -58,7 +58,7 @@ async function getSheet() {
 function mapRow(row: any): Provider {
   return {
     category: row.Category || '',
-    subcategory: row.Provider || '',
+    subcategory: row.Subcategory || '',
     title: row.Title || '',
     description: row.Description || '',
     phone: row.Phone || '',
@@ -66,6 +66,8 @@ function mapRow(row: any): Provider {
     email: row.Email || '',
     instagram: row.Instagram || '',
     instagramDisplay: getInstagramDisplay(row.Instagram) || '',
+    facebook: row.Facebook || '',
+    keywords: (row.Keywords || '').split(',').map((k: string) => k.trim()),
   }
 }
 

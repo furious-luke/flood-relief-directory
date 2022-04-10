@@ -18,6 +18,8 @@ export interface Provider {
   email?: string,
   instagram?: string,
   instagramDisplay?: string,
+  facebook?: string,
+  keywords?: string[],
 }
 
 export interface Subcategory {
@@ -128,6 +130,12 @@ function ProvidersListItem(props: ProvidersListItemProps) {
             <DefinitionList.Term key={4} color="accent">Instagram: </DefinitionList.Term>,
             <DefinitionList.Definition key={5}>
               <a href={provider.instagram} onClick={openInNewTab}>{provider.instagramDisplay}</a>
+            </DefinitionList.Definition>,
+          ])}
+          {provider.facebook && ([
+            <DefinitionList.Term key={6} color="accent">Facebook: </DefinitionList.Term>,
+            <DefinitionList.Definition key={7}>
+              <a href={provider.facebook} onClick={openInNewTab}>{provider.facebook}</a>
             </DefinitionList.Definition>,
           ])}
         </DefinitionList>
