@@ -21,7 +21,6 @@ export interface Provider {
   instagramDisplay?: string,
   facebook?: string,
   keywords?: string[],
-  content: string,
 }
 
 export interface Subcategory {

@@ -26,7 +26,10 @@ interface HomeProps {
 export default function Home(props: HomeProps) {
   const { categories = [] } = props
   const documents = categories.map(c => c.subcategories.map(s => s.providers)).flat(2)
-  const index = new Fuse(documents, {keys: ['description', 'keywords'], includeScore: true})
+  const index = new Fuse(documents, {
+    keys: ['title', 'description', 'keywords'],
+    includeScore: true,
+  })
   return (
     <div>
       <Head>

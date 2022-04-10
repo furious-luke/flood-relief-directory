@@ -57,7 +57,9 @@ async function getSheet() {
 
 function mapRow(row: any): Provider {
   const description = row.Description || ''
-  const keywords = (row.Keywords || '').split(',').map((k: string) => k.trim())
+  const keywords = (row.Keywords || '')
+        .split(',')
+        .map((k: string) => k.trim())
   return {
     id: uuidv4(),
     category: row.Category || '',
@@ -71,7 +73,6 @@ function mapRow(row: any): Provider {
     instagramDisplay: getInstagramDisplay(row.Instagram) || '',
     facebook: row.Facebook || '',
     keywords,
-    content: description + ' ' + keywords.join(' '),
   }
 }
 

@@ -124,7 +124,7 @@ export function SearchInput(props: SearchInputProps) {
                     href={`#${r.id}`}
                     onClick={() => setValue('')}
                   >
-                    {r.title}
+                    {r.subcategory} {r.title}
                   </SoftLink>
                 </Text>
               </div>
