@@ -56,18 +56,22 @@ async function getSheet() {
 }
 
 function mapRow(row: any): Provider {
+  const description = row.Description || ''
+  const keywords = (row.Keywords || '').split(',').map((k: string) => k.trim())
   return {
+    id: uuidv4(),
     category: row.Category || '',
     subcategory: row.Subcategory || '',
     title: row.Title || '',
-    description: row.Description || '',
+    description,
     phone: row.Phone || '',
     link: row.Website || '',
     email: row.Email || '',
     instagram: row.Instagram || '',
     instagramDisplay: getInstagramDisplay(row.Instagram) || '',
     facebook: row.Facebook || '',
-    keywords: (row.Keywords || '').split(',').map((k: string) => k.trim()),
+    keywords,
+    content: description + ' ' + keywords.join(' '),
   }
 }
 

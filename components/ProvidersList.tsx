@@ -9,6 +9,7 @@ import { ListItem } from './ListItem'
 import { DefinitionList } from './DefinitionList'
 
 export interface Provider {
+  id: string,
   category: string,
   subcategory?: string,
   title: string,
@@ -20,6 +21,7 @@ export interface Provider {
   instagramDisplay?: string,
   facebook?: string,
   keywords?: string[],
+  content: string,
 }
 
 export interface Subcategory {
@@ -104,42 +106,44 @@ interface ProvidersListItemProps {
 function ProvidersListItem(props: ProvidersListItemProps) {
   const { provider } = props
   return (
-    <ListItem
-      title={provider.title}
-      description={provider.description}
-    >
-      <div style={{marginTop: 18, marginBottom: 18}}>
-        <DefinitionList>
-          {provider.link && ([
-            <DefinitionList.Term key={0} color="accent">Website: </DefinitionList.Term>,
-            <DefinitionList.Definition key={1}>
-              <a href={provider.link} onClick={openInNewTab}>{provider.link}</a>
-            </DefinitionList.Definition>,
-          ])}
-          {provider.email && ([
-            <DefinitionList.Term key={2} color="accent">Email: </DefinitionList.Term>,
-            <DefinitionList.Definition key={3}>
-              <a href={`mailto:{provider.email}`}>{provider.email}</a>
-            </DefinitionList.Definition>,
-          ])}
-          {provider.phone && ([
-            <DefinitionList.Term key={4} color="accent">Phone: </DefinitionList.Term>,
-            <DefinitionList.Definition key={5}>{provider.phone}</DefinitionList.Definition>,
-          ])}
-          {provider.instagram && ([
-            <DefinitionList.Term key={4} color="accent">Instagram: </DefinitionList.Term>,
-            <DefinitionList.Definition key={5}>
-              <a href={provider.instagram} onClick={openInNewTab}>{provider.instagramDisplay}</a>
-            </DefinitionList.Definition>,
-          ])}
-          {provider.facebook && ([
-            <DefinitionList.Term key={6} color="accent">Facebook: </DefinitionList.Term>,
-            <DefinitionList.Definition key={7}>
-              <a href={provider.facebook} onClick={openInNewTab}>{provider.facebook}</a>
-            </DefinitionList.Definition>,
-          ])}
-        </DefinitionList>
-      </div>
-    </ListItem>
+    <div id={provider.id}>
+      <ListItem
+        title={provider.title}
+        description={provider.description}
+      >
+        <div style={{marginTop: 18, marginBottom: 18}}>
+          <DefinitionList>
+            {provider.link && ([
+              <DefinitionList.Term key={0} color="accent">Website: </DefinitionList.Term>,
+              <DefinitionList.Definition key={1}>
+                <a href={provider.link} onClick={openInNewTab}>{provider.link}</a>
+              </DefinitionList.Definition>,
+            ])}
+            {provider.email && ([
+              <DefinitionList.Term key={2} color="accent">Email: </DefinitionList.Term>,
+              <DefinitionList.Definition key={3}>
+                <a href={`mailto:{provider.email}`}>{provider.email}</a>
+              </DefinitionList.Definition>,
+            ])}
+            {provider.phone && ([
+              <DefinitionList.Term key={4} color="accent">Phone: </DefinitionList.Term>,
+              <DefinitionList.Definition key={5}>{provider.phone}</DefinitionList.Definition>,
+            ])}
+            {provider.instagram && ([
+              <DefinitionList.Term key={4} color="accent">Instagram: </DefinitionList.Term>,
+              <DefinitionList.Definition key={5}>
+                <a href={provider.instagram} onClick={openInNewTab}>{provider.instagramDisplay}</a>
+              </DefinitionList.Definition>,
+            ])}
+            {provider.facebook && ([
+              <DefinitionList.Term key={6} color="accent">Facebook: </DefinitionList.Term>,
+              <DefinitionList.Definition key={7}>
+                <a href={provider.facebook} onClick={openInNewTab}>{provider.facebook}</a>
+              </DefinitionList.Definition>,
+            ])}
+          </DefinitionList>
+        </div>
+      </ListItem>
+    </div>
   )
 }

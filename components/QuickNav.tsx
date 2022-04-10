@@ -6,6 +6,7 @@ import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons'
 import {Text} from './Text'
 import {Button} from './Button'
 import {InstaLink} from './InstaLink'
+import {SearchInput} from './SearchInput'
 
 const SCROLLBAR_SIZE = 8;
 
@@ -91,7 +92,7 @@ export const VisibleAt = styled('div', {
   },
 })
 
-const SoftLink = styled('a', {
+export const SoftLink = styled('a', {
   textDecoration: 'none',
   '&:hover': {
     borderBottom: '1px $hiContrast dotted',
@@ -99,13 +100,14 @@ const SoftLink = styled('a', {
 })
 
 export function ResponsiveQuickNav(props: any) {
-  const {categories} = props
+  const {index, categories} = props
   const [visible, setVisible] = React.useState(false)
   return (
     <>
       <VisibleAt bp1 style={{position: 'sticky', top: 0, background: 'white'}}>
         {!visible && (
           <div style={{display: 'flex', justifyContent: 'flex-end', background: 'white'}}>
+            <SearchInput index={index} />
             <InstaLink />
             <div style={{padding: '10px'}}>
               <Button

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
+import Fuse from 'fuse.js'
 import { styled } from '../stitches.config'
 import type { Category } from '../components/ProvidersList'
 import { ProvidersList } from '../components/ProvidersList'
@@ -8,6 +9,7 @@ import { Text } from '../components/Text'
 import { AppShell } from '../components/AppShell'
 import { VisibleAt } from '../components/QuickNav'
 import { InstaLink } from '../components/InstaLink'
+import { SearchInput } from '../components/SearchInput'
 import { getProvidersList } from '../libs/getProvidersList'
 
 const PaddedBox = styled('div', {
@@ -23,6 +25,8 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { categories = [] } = props
+  const documents = categories.map(c => c.subcategories.map(s => s.providers)).flat(2)
+  const index = new Fuse(documents, {keys: ['description', 'keywords'], includeScore: true})
   return (
     <div>
       <Head>
@@ -40,7 +44,9 @@ export default function Home(props: HomeProps) {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end', margin: '10px 20px 0 0'}}>
           <InstaLink scale={1.5} />
         </div>
-        <div />
+        <div>
+          <SearchInput index={index} />
+        </div>
         <PaddedBox>
           <VisibleAt bp1>
             <div style={{marginBottom: '30px'}}>
@@ -63,7 +69,7 @@ export default function Home(props: HomeProps) {
           </Text>
           <ProvidersList categories={categories} />
         </PaddedBox>
-        <ResponsiveQuickNav categories={categories} />
+        <ResponsiveQuickNav index={index} categories={categories} />
       </AppShell>
     </div>
   )
