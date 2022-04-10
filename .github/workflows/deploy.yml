@@ -1,5 +1,8 @@
 name: Deploy
 on:
+  schedule:
+    - cron: '0 0/6 * * *'
+
   push:
     branches:
       - main
