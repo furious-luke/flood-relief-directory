@@ -30,6 +30,7 @@ const globalStyles = globalCss({
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyles()
   React.useEffect(() => {
+    document.documentElement.dataset.scroll = '0'
     document.addEventListener('scroll', () => {
       document.documentElement.dataset.scroll = String(window.scrollY)
     })
