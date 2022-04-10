@@ -73,7 +73,7 @@ export const VisibleAt = styled('div', {
     bp1: {
       true: {
         '@bp1': {
-          display: 'block',
+          display: 'initial',
         },
         '@bp2': {
           display: 'none',
@@ -84,7 +84,7 @@ export const VisibleAt = styled('div', {
       true: {
         display: 'none',
         '@bp2': {
-          display: 'block',
+          display: 'initial',
         },
       },
     },
