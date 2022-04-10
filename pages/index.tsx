@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Head from 'next/head'
 import Fuse from 'fuse.js'
-import { styled } from '../stitches.config'
+import { styled, keyframes } from '../stitches.config'
 import type { Category } from '../components/ProvidersList'
 import { ProvidersList } from '../components/ProvidersList'
 import { ResponsiveQuickNav } from '../components/QuickNav'
@@ -10,6 +10,7 @@ import { AppShell } from '../components/AppShell'
 import { VisibleAt } from '../components/QuickNav'
 import { InstaLink } from '../components/InstaLink'
 import { SearchInput } from '../components/SearchInput'
+import { Button } from '../components/Button'
 import { getProvidersList } from '../libs/getProvidersList'
 
 const PaddedBox = styled('div', {
@@ -71,6 +72,33 @@ export default function Home(props: HomeProps) {
             submissions or updates.
           </Text>
           <ProvidersList categories={categories} />
+          <div style={{position: 'sticky', bottom: 0, display: 'flex', justifyContent: 'flex-end'}}>
+            <Button
+              css={{
+                margin: '0 10px 10px 0',
+                padding: '10px 30px 10px 30px',
+                borderRadius: 16,
+                backgroundColor: '$lightPeach',
+                '&:hover': {
+                  backgroundColor: '$lightPeach',
+                },
+                '@media (prefers-reduced-motion: no-preference)': {
+                  transition: '400ms ease-in-out',
+                },
+                transform: 'translateY(100px)',
+                'html:not([data-scroll="0"]) &': {
+                  transform: 'none',
+                },
+              }}
+              kind="minimal"
+              onClick={() => {
+                document.body.scrollTop = 0
+                document.documentElement.scrollTop = 0
+              }}
+            >
+              Back to top
+            </Button>
+          </div>
         </PaddedBox>
         <ResponsiveQuickNav index={index} categories={categories} />
       </AppShell>

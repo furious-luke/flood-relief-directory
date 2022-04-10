@@ -29,6 +29,11 @@ const globalStyles = globalCss({
 
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyles()
+  React.useEffect(() => {
+    document.addEventListener('scroll', () => {
+      document.documentElement.dataset.scroll = String(window.scrollY)
+    })
+  }, [])
   return (
     <Component {...pageProps} />
   )
