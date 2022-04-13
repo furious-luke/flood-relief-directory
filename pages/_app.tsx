@@ -1,6 +1,6 @@
 import * as React from 'react'
-import type { AppProps } from 'next/app'
-import { globalCss } from '../stitches.config'
+import type {AppProps} from 'next/app'
+import {theme, globalCss} from '../stitches.config'
 
 const globalStyles = globalCss({
   html: {
@@ -27,7 +27,7 @@ const globalStyles = globalCss({
   },
 })
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({Component, pageProps}: AppProps) {
   globalStyles()
   React.useEffect(() => {
     document.documentElement.dataset.scroll = '0'
@@ -36,7 +36,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     })
   }, [])
   return (
-    <Component {...pageProps} />
+    <div className={theme}>
+      <Component {...pageProps} />
+    </div>
   )
 }
 

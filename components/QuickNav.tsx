@@ -1,10 +1,11 @@
 import * as React from 'react'
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
-import { styled } from '../stitches.config'
-import { mauve, blackA } from '@radix-ui/colors'
-import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons'
+import {styled} from '../stitches.config'
+import {mauve, blackA} from '@radix-ui/colors'
+import {IconButton} from 'design-system/IconButton'
+import {Icon} from 'design-system/Icon'
+import {HamburgerMenuIcon, Cross1Icon} from '@radix-ui/react-icons'
 import {Text} from './Text'
-import {Button} from './Button'
 import {InstaLink} from './InstaLink'
 import {SearchInput} from './SearchInput'
 
@@ -106,17 +107,14 @@ export function ResponsiveQuickNav(props: any) {
     <>
       <VisibleAt bp1 style={{position: 'sticky', top: 0, background: 'white'}}>
         {!visible && (
-          <div style={{display: 'flex', justifyContent: 'flex-end', background: 'white'}}>
-            <SearchInput index={index} />
+          <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 5, background: 'white', padding: 10}}>
+            <SearchInput css={{mr: 10}} index={index} />
             <InstaLink />
-            <div style={{padding: '10px'}}>
-              <Button
-                kind="minimal"
-                onClick={() => setVisible(true)}
-              >
-                <HamburgerMenuIcon style={{display: 'block'}} width="20" height="20" />
-              </Button>
-            </div>
+            <IconButton size="2" onClick={() => setVisible(true)}>
+              <Icon size="2">
+                <HamburgerMenuIcon />
+              </Icon>
+            </IconButton>
           </div>
         )}
         {visible && (
@@ -159,12 +157,11 @@ export function QuickNav(props: any) {
       {showClose && (
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <div style={{padding: '10px'}}>
-            <Button
-              kind="minimal"
-              onClick={() => onClose()}
-            >
-              <Cross1Icon style={{display: 'block'}} width="20" height="20" />
-            </Button>
+            <IconButton size="2" onClick={() => onClose()}>
+              <Icon size="2">
+                <Cross1Icon style={{display: 'block'}} />
+              </Icon>
+            </IconButton>
           </div>
         </div>
       )}

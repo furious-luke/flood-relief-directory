@@ -1,12 +1,12 @@
 import * as React from 'react'
 import Head from 'next/head'
 import Fuse from 'fuse.js'
+import {AppShell} from 'design-system/AppShell'
 import { styled, keyframes } from '../stitches.config'
 import type { Category } from '../components/ProvidersList'
 import { ProvidersList } from '../components/ProvidersList'
 import { ResponsiveQuickNav } from '../components/QuickNav'
 import { Text } from '../components/Text'
-import { AppShell } from '../components/AppShell'
 import { VisibleAt } from '../components/QuickNav'
 import { InstaLink } from '../components/InstaLink'
 import { SearchInput } from '../components/SearchInput'
@@ -15,8 +15,9 @@ import { getProvidersList } from '../libs/getProvidersList'
 
 const PaddedBox = styled('div', {
   overflow: 'clip',
-  '@bp1': {
-    padding: '0 10px 10px 10px',
+  padding: '0 10px 10px 10px',
+  '@bp2': {
+    padding: 0,
   },
 })
 
@@ -38,7 +39,7 @@ export default function Home(props: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AppShell>
+      <AppShell direction="reverse">
         <div />
         <VisibleAt bp2>
           <div style={{marginBottom: '30px'}}>
@@ -46,8 +47,9 @@ export default function Home(props: HomeProps) {
           </div>
         </VisibleAt>
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end', margin: '10px 20px 0 0'}}>
-          <InstaLink scale={1.5} />
+          <InstaLink />
         </div>
+
         <div>
           <SearchInput index={index} />
         </div>

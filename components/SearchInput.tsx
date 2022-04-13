@@ -2,7 +2,8 @@ import * as React from 'react'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
 import {MagnifyingGlassIcon} from '@radix-ui/react-icons'
-import {styled, keyframes} from '../stitches.config'
+import {TextInput} from 'design-system/TextInput'
+import {styled, keyframes, CSS} from '../stitches.config'
 import type {Provider} from './ProvidersList'
 import {SoftLink} from './QuickNav'
 import {Text} from './Text'
@@ -33,7 +34,6 @@ const StyledContent = styled('div', {
 // Exports
 export const PopoverContent = StyledContent
 
-
 const Label = styled(LabelPrimitive.Root, {
   fontSize: 15,
   fontWeight: 500,
@@ -41,47 +41,10 @@ const Label = styled(LabelPrimitive.Root, {
   userSelect: 'none',
 })
 
-const Input = styled('input', {
-  width: '100%',
-  outline: 'none',
-  borderRadius: 4,
-  fontFamily: '$muller',
-  color: '$blueberry',
-  border: 'none',
-  boxShadow: `0 0 0 1px $colors$lightOrange`,
-  '&:focus': { boxShadow: `0 0 0 2px $colors$lightOrange` },
-  '@bp1': {
-    padding: '0 10px 0 32px',
-    height: 30,
-    fontSize: 12,
-  },
-  '@bp2': {
-    padding: '0 10px 0 37px',
-    height: 35,
-    fontSize: 15,
-  },
-})
-
-const SearchIcon = styled(MagnifyingGlassIcon, {
-  position: 'absolute',
-  top: 8,
-  left: 8,
-  color: '$blueberry',
-  '@bp1': {
-    width: 16,
-    height: 16,
-  },
-  '@bp2': {
-    width: 20,
-    height: 20,
-  },
-})
-
 const Wrapper = styled('div', {
   maxWidth: 350,
   '@bp1': {
     width: '100%',
-    padding: 10,
   },
   '@bp2': {
     position: 'sticky',
@@ -95,8 +58,8 @@ interface SearchInputProps {
   index: any
 }
 
-export function SearchInput(props: SearchInputProps) {
-  const {index} = props
+export function SearchInput(props: SearchInputProps & {css?: CSS}) {
+  const {css, index} = props
   const [value, setValue] = React.useState('')
   let results = []
   if (value) {
@@ -106,15 +69,24 @@ export function SearchInput(props: SearchInputProps) {
       .map((r: any) => r.item)
   }
   return (
-    <Wrapper>
+    <Wrapper css={css}>
       <VisuallyHidden.Root>
         <Label htmlFor="search" css={{visibility: 'hidden', lineHeight: 35, marginRight: 15}}>
           Search
         </Label>
       </VisuallyHidden.Root>
       <div style={{position: 'relative'}}>
-        <SearchIcon />
-        <Input type="text" id="search" value={value} onChange={e => setValue(e.target.value)} />
+        <TextInput
+          type="text"
+          id="search"
+          size="2"
+          value={value}
+          onChange={(e: any) => setValue(e.target.value)}
+        >
+          <TextInput.LeftEnhancer>
+            <MagnifyingGlassIcon />
+          </TextInput.LeftEnhancer>
+        </TextInput>
         {!!value && (
           <PopoverContent>
             {results.map((r: Provider) => (

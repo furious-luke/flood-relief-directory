@@ -1,23 +1,17 @@
 import * as React from 'react'
-import { InstagramLogoIcon } from '@radix-ui/react-icons'
-import { openInNewTab } from '../libs/openInNewTab'
-import { Button } from './Button'
+import {InstagramLogoIcon} from '@radix-ui/react-icons'
+import {IconButton} from 'design-system/IconButton'
+import {Icon} from 'design-system/Icon'
+import {openInNewTab} from '../libs/openInNewTab'
 
-interface InstaLinkProps {
-  scale?: number
-}
-
-export function InstaLink(props: InstaLinkProps) {
-  const {scale = 1} = props
-  const width = scale * 20
-  const height = scale * 20
+export function InstaLink() {
   return (
-    <div style={{padding: 10}}>
-      <Button kind="minimal">
-        <a style={{display: 'block'}} href="https://www.instagram.com/floodreliefdirectory" onClick={openInNewTab}>
-          <InstagramLogoIcon style={{display: 'block'}} width={width} height={height} />
-        </a>
-      </Button>
-    </div>
+    <a href="https://www.instagram.com/floodreliefdirectory" onClick={openInNewTab}>
+      <IconButton size={{'@initial': '2', '@bp2': '3'}}>
+        <Icon size={{'@initial': '2', '@bp2': '3'}}>
+          <InstagramLogoIcon />
+        </Icon>
+      </IconButton>
+    </a>
   )
 }
