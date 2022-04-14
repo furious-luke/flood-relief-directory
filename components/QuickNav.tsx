@@ -4,6 +4,7 @@ import {styled} from '../stitches.config'
 import {mauve, blackA} from '@radix-ui/colors'
 import {IconButton} from 'design-system/IconButton'
 import {Icon} from 'design-system/Icon'
+import {VisibleAt} from 'design-system/VisibleAt'
 import {HamburgerMenuIcon, Cross1Icon} from '@radix-ui/react-icons'
 import {Text} from './Text'
 import {InstaLink} from './InstaLink'
@@ -70,29 +71,6 @@ const ScrollAreaScrollbar = StyledScrollbar;
 const ScrollAreaThumb = StyledThumb;
 const ScrollAreaCorner = StyledCorner;
 
-export const VisibleAt = styled('div', {
-  variants: {
-    bp1: {
-      true: {
-        '@bp1': {
-          display: 'initial',
-        },
-        '@bp2': {
-          display: 'none',
-        },
-      },
-    },
-    bp2: {
-      true: {
-        display: 'none',
-        '@bp2': {
-          display: 'initial',
-        },
-      },
-    },
-  },
-})
-
 export const SoftLink = styled('a', {
   textDecoration: 'none',
   '&:hover': {
@@ -105,7 +83,7 @@ export function ResponsiveQuickNav(props: any) {
   const [visible, setVisible] = React.useState(false)
   return (
     <>
-      <VisibleAt bp1 style={{position: 'sticky', top: 0, background: 'white'}}>
+      <VisibleAt css={{position: 'sticky', top: 0, background: 'white'}} showAt="initial" hideAt="bp2">
         {!visible && (
           <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 5, background: 'white', padding: 10}}>
             <SearchInput css={{mr: 10}} index={index} />
@@ -125,7 +103,7 @@ export function ResponsiveQuickNav(props: any) {
           />
         )}
       </VisibleAt>
-      <VisibleAt bp2>
+      <VisibleAt showAt="bp2">
         <StickyQuickNav categories={categories} />
       </VisibleAt>
     </>

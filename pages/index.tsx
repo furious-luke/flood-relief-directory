@@ -2,24 +2,16 @@ import * as React from 'react'
 import Head from 'next/head'
 import Fuse from 'fuse.js'
 import {AppShell} from 'design-system/AppShell'
-import { styled, keyframes } from '../stitches.config'
+import {Section} from 'design-system/Section'
+import {VisibleAt} from 'design-system/VisibleAt'
 import type { Category } from '../components/ProvidersList'
 import { ProvidersList } from '../components/ProvidersList'
 import { ResponsiveQuickNav } from '../components/QuickNav'
 import { Text } from '../components/Text'
-import { VisibleAt } from '../components/QuickNav'
 import { InstaLink } from '../components/InstaLink'
 import { SearchInput } from '../components/SearchInput'
 import { Button } from '../components/Button'
 import { getProvidersList } from '../libs/getProvidersList'
-
-const PaddedBox = styled('div', {
-  overflow: 'clip',
-  padding: '0 10px 10px 10px',
-  '@bp2': {
-    padding: 0,
-  },
-})
 
 interface HomeProps {
   categories: Category[],
@@ -41,7 +33,7 @@ export default function Home(props: HomeProps) {
 
       <AppShell direction="reverse">
         <div />
-        <VisibleAt bp2>
+        <VisibleAt showAt="bp2">
           <div style={{marginBottom: '30px'}}>
             <img src="/banner.png" width="100%" />
           </div>
@@ -53,8 +45,8 @@ export default function Home(props: HomeProps) {
         <div>
           <SearchInput index={index} />
         </div>
-        <PaddedBox>
-          <VisibleAt bp1>
+        <Section>
+          <VisibleAt showAt="initial" hideAt="bp2">
             <div style={{marginBottom: '30px'}}>
               <img src="/banner.png" width="100%" />
             </div>
@@ -62,10 +54,10 @@ export default function Home(props: HomeProps) {
           <Text style={{lineHeight: '22px'}}>
             A collection of resources for the community affected by the 2022 natural disasters in the Northern Rivers
             of NSW.&nbsp;
-            <VisibleAt as="span" bp1>
+            <VisibleAt as="span" showAt="initial" hideAt="bp2">
               Click on the sections in the menu above, or scroll all the way through.
             </VisibleAt>
-            <VisibleAt as="span" bp2>
+            <VisibleAt as="span" showAt="bp2">
               Click on the sections to the right, or scroll all the way through.
             </VisibleAt>
           </Text>
@@ -101,7 +93,7 @@ export default function Home(props: HomeProps) {
               Back to top
             </Button>
           </div>
-        </PaddedBox>
+        </Section>
         <ResponsiveQuickNav index={index} categories={categories} />
       </AppShell>
     </div>
