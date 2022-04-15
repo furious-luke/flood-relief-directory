@@ -14,6 +14,7 @@ on:
       - deploy.sh
       - stitches.config.ts
       - .github/workflows/deploy.yml
+      - radix-design-system
 
 jobs:
   deploy:
