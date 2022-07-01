@@ -6,6 +6,7 @@ import {IconButton} from 'design-system/IconButton'
 import {Icon} from 'design-system/Icon'
 import {VisibleAt} from 'design-system/VisibleAt'
 import {HamburgerMenuIcon, Cross1Icon} from '@radix-ui/react-icons'
+import type {Heading} from './ProvidersList'
 import {Text} from './Text'
 import {InstaLink} from './InstaLink'
 import {SearchInput} from './SearchInput'
@@ -128,7 +129,13 @@ function StickyQuickNav(props: any) {
   )
 }
 
-export function QuickNav(props: any) {
+interface QuickNaveProps {
+  headings: Heading[],
+  showClose: boolean,
+  onClose: (...args: any[]) => any,
+}
+
+export function QuickNav(props: QuickNaveProps) {
   const {headings, showClose, onClose} = props
   return (
     <aside>
