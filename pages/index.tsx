@@ -4,7 +4,7 @@ import Fuse from 'fuse.js'
 import {AppShell} from 'design-system/AppShell'
 import {Section} from 'design-system/Section'
 import {VisibleAt} from 'design-system/VisibleAt'
-import type { Category } from '../components/ProvidersList'
+import type { Heading } from '../components/ProvidersList'
 import { ProvidersList } from '../components/ProvidersList'
 import { ResponsiveQuickNav } from '../components/QuickNav'
 import { Text } from '../components/Text'
@@ -14,12 +14,12 @@ import { Button } from '../components/Button'
 import { getProvidersList } from '../libs/getProvidersList'
 
 interface HomeProps {
-  categories: Category[],
+  headings: Heading[],
 }
 
 export default function Home(props: HomeProps) {
-  const { categories = [] } = props
-  const documents = categories.map(c => c.subcategories.map(s => s.providers)).flat(2)
+  const { headings = [] } = props
+  const documents = headings.map(h => h.categories.map(c => c.subcategories.map(s => s.providers))).flat(3)
   const index = new Fuse(documents, {
     keys: ['title', 'description', 'keywords'],
     includeScore: true,
@@ -42,9 +42,9 @@ export default function Home(props: HomeProps) {
           <InstaLink />
         </div>
 
-        <div>
+        <Section>
           <SearchInput index={index} />
-        </div>
+        </Section>
         <Section>
           <VisibleAt showAt="initial" hideAt="bp2">
             <div style={{marginBottom: '30px'}}>
@@ -65,7 +65,7 @@ export default function Home(props: HomeProps) {
             Please email <a href="mailto:floodreliefdirectory@gmail.com">floodreliefdirectory@gmail.com</a> if you have
             submissions or updates.
           </Text>
-          <ProvidersList categories={categories} />
+          <ProvidersList headings={headings} />
           <div style={{position: 'sticky', bottom: 0, display: 'flex', justifyContent: 'flex-end'}}>
             <Button
               css={{
@@ -94,17 +94,19 @@ export default function Home(props: HomeProps) {
             </Button>
           </div>
         </Section>
-        <ResponsiveQuickNav index={index} categories={categories} />
+        <Section>
+          <ResponsiveQuickNav index={index} headings={headings} />
+        </Section>
       </AppShell>
     </div>
   )
 }
 
 export async function getStaticProps() {
-  const categories: Category[] = await getProvidersList()
+  const headings: Heading[] = await getProvidersList()
   return {
     props: {
-      categories,
+      headings,
     },
   }
 }

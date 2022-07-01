@@ -1,35 +1,49 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet'
 import { v4 as uuidv4 } from 'uuid'
-import type { Category, Subcategory, Provider } from '../components/ProvidersList'
+import type { Heading, Category, Subcategory, Provider } from '../components/ProvidersList'
 
 const SPREADSHEET_ID = "12zifFI7KceaRA2vh4ZBYKrvjfFE3hYt6u3xRUxJEp-M"
 
-export async function getProvidersList(): Promise<Category[]> {
+export async function getProvidersList(): Promise<Heading[]> {
   const sheet = await getSheet()
   const rows = await sheet.getRows()
   const providers = rows.map(mapRow)
   return categorizeProviders(providers)
 }
 
-function categorizeProviders(providers: Provider[]): Category[] {
-  const categories: Category[] = []
+function categorizeProviders(providers: Provider[]): Heading[] {
+  const headings: Heading[] = []
   providers.forEach(provider => {
-    const category = findCategory(categories, provider)
+    const heading = findHeading(headings, provider)
+    const category = findCategory(heading, provider)
     const subcategory = findSubcategory(category, provider)
     subcategory.providers.push(provider)
   })
-  return categories
+  return headings
 }
 
-function findCategory(categories: Category[], provider: Provider): Category {
-  let category: Category | undefined = categories.find(c => c.name == provider.category)
+function findHeading(headings: Heading[], provider: Provider): Heading {
+  let heading: Heading | undefined = headings.find(h => h.name == provider.heading)
+  if (!heading) {
+    heading = {
+      id: uuidv4(),
+      name: provider.heading,
+      categories: [],
+    }
+    headings.push(heading)
+  }
+  return heading
+}
+
+function findCategory(heading: Heading, provider: Provider): Category {
+  let category: Category | undefined = heading.categories.find(c => c.name == provider.category)
   if (!category) {
     category = {
       id: uuidv4(),
       name: provider.category,
       subcategories: [],
     }
-    categories.push(category)
+    heading.categories.push(category)
   }
   return category
 }
@@ -62,6 +76,7 @@ function mapRow(row: any): Provider {
         .map((k: string) => k.trim())
   return {
     id: uuidv4(),
+    heading: row.Heading || '',
     category: row.Category || '',
     subcategory: row.Subcategory || '',
     title: row.Title || '',

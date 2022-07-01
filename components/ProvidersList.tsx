@@ -10,6 +10,7 @@ import { DefinitionList } from './DefinitionList'
 
 export interface Provider {
   id: string,
+  heading: string,
   category: string,
   subcategory?: string,
   title: string,
@@ -35,6 +36,12 @@ export interface Category {
   subcategories: Subcategory[]
 }
 
+export interface Heading {
+  id: string,
+  name: string
+  categories: Category[]
+}
+
 const Separator = styled(SeparatorPrimitive.Root, {
   backgroundColor: mauve.mauve7,
   '&[data-orientation=horizontal]': { height: 1, width: '100%' },
@@ -43,11 +50,12 @@ const Separator = styled(SeparatorPrimitive.Root, {
 
 
 interface ProvidersListProps {
-  categories: Category[]
+  headings: Heading[]
 }
 
 export function ProvidersList(props: ProvidersListProps) {
-  const { categories = [] } = props
+  const { headings = [] } = props
+  const categories = headings.map(h => h.categories).flat(1)
   return (
     <div style={{marginTop: '40px'}}>
       <SectionStack>

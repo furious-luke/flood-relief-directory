@@ -15,7 +15,7 @@ const SCROLLBAR_SIZE = 8;
 const StyledScrollArea = styled(ScrollAreaPrimitive.Root, {
   minWidth: 300,
   paddingLeft: 40,
-  height: '100vh',
+  height: '95vh',  // was 100vh, but was clipping at the top
   borderRadius: 4,
   overflow: 'hidden',
 });
@@ -79,7 +79,7 @@ export const SoftLink = styled('a', {
 })
 
 export function ResponsiveQuickNav(props: any) {
-  const {index, categories} = props
+  const {index, headings} = props
   const [visible, setVisible] = React.useState(false)
   return (
     <>
@@ -97,25 +97,25 @@ export function ResponsiveQuickNav(props: any) {
         )}
         {visible && (
           <StickyQuickNav
-            categories={categories}
+            headings={headings}
             showClose
             onClose={() => setVisible(false)}
           />
         )}
       </VisibleAt>
       <VisibleAt showAt="bp2">
-        <StickyQuickNav categories={categories} />
+        <StickyQuickNav headings={headings} />
       </VisibleAt>
     </>
   )
 }
 
 function StickyQuickNav(props: any) {
-  const {categories, showClose, onClose} = props
+  const {headings, showClose, onClose} = props
   return (
     <ScrollArea style={{position: 'sticky', top: 0}}>
       <ScrollAreaViewport>
-        <QuickNav categories={categories} showClose={showClose} onClose={onClose} />
+        <QuickNav headings={headings} showClose={showClose} onClose={onClose} />
       </ScrollAreaViewport>
       <ScrollAreaScrollbar orientation="vertical">
         <ScrollAreaThumb />
@@ -129,7 +129,7 @@ function StickyQuickNav(props: any) {
 }
 
 export function QuickNav(props: any) {
-  const {categories, showClose, onClose} = props
+  const {headings, showClose, onClose} = props
   return (
     <aside>
       {showClose && (
@@ -143,10 +143,14 @@ export function QuickNav(props: any) {
           </div>
         </div>
       )}
-      <Text as="h2" size="xl" color="secondary">How can we help?</Text>
-      <div style={{paddingRight: 20}}>
-        {categories.map((c: any, i: number) => <Category key={i} category={c} onClose={onClose} />)}
-      </div>
+      {headings.map(h => (
+        <>
+          <Text as="h2" size="xl" color="secondary">{h.name}</Text>
+          <div style={{paddingRight: 20}}>
+            {h.categories.map((c: any, i: number) => <Category key={i} category={c} onClose={onClose} />)}
+          </div>
+        </>
+      ))}
     </aside>
   )
 }
