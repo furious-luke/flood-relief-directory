@@ -34,7 +34,7 @@ export const textVariants = css({
 })
 
 export const Text = styled('p', textVariants, {
-  fontFamily: '$muller',
+  fontFamily: '$default',
   fontSize: '$2',
   color: '$blueberry',
 })

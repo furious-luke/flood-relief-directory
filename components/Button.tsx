@@ -7,7 +7,7 @@ export const Button = styled('button', {
   border: 'none',
   padding: 5,
   margin: 0,
-  fontFamily: '$muller',
+  fontFamily: '$default',
   fontSize: '$2',
   cursor: 'pointer',
   outline: 'inherit',

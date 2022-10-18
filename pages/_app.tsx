@@ -19,12 +19,20 @@ const globalStyles = globalCss({
   '*': {
     boxSizing: 'border-box',
   },
-  '@font-face': {
-    fontFamily: 'Muller',
-    src: 'url("/fonts/Muller-Regular.ttf") format("truetype")',
-    fontStyle: 'normal',
-    fontWeight: 400,
-  },
+  '@font-face': [
+      {
+          fontFamily: 'Muller',
+          src: 'url("/fonts/Muller-Regular.ttf") format("truetype")',
+          fontStyle: 'normal',
+          fontWeight: 400,
+      },
+      {
+          fontFamily: 'Inter',
+          src: 'url("/fonts/Inter-Regular.ttf") format("truetype")',
+          fontStyle: 'normal',
+          fontWeight: 400,
+    },
+  ],
 })
 
 function MyApp({Component, pageProps}: AppProps) {

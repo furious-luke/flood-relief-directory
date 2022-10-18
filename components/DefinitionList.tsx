@@ -3,7 +3,7 @@ import { styled } from '../stitches.config'
 import { textVariants } from './Text'
 
 const Term = styled('dt', textVariants, {
-  fontFamily: '$muller',
+  fontFamily: '$default',
   fontWeight: '600',
   fontSize: '$1',
   color: '$blueberry',
@@ -11,7 +11,7 @@ const Term = styled('dt', textVariants, {
 })
 
 const Definition = styled('dd', textVariants, {
-  fontFamily: '$muller',
+  fontFamily: '$default',
   fontSize: '$1',
   marginLeft: 0,
   color: '$blueberry',
